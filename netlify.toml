@@ -1,0 +1,17 @@
+[build]
+  base = "frontend"
+  publish = "frontend"
+  command = "node ../scripts/gen-config.js"
+  functions = "../netlify/functions"
+
+[functions]
+  node_bundler = "esbuild"
+
+# Set these in Netlify → Site settings → Environment variables:
+#   SUPABASE_URL, SUPABASE_ANON_KEY  (used by gen-config.js to write frontend/config.js)
+#   SUPABASE_SERVICE_ROLE_KEY        (used only by netlify/functions/create-employee.js — never sent to the browser)
+
+[[redirects]]
+  from = "/admin"
+  to = "/admin.html"
+  status = 200

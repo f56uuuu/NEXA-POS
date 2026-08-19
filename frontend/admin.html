@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl" data-theme="dark">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>NEXA POS — Super Admin</title>
+<link rel="icon" href="img/brand-sun.jpg" type="image/jpeg" />
+<link href="https://fonts.googleapis.com/css2?family=Tajawal:wght@400;500;700;900&family=Space+Grotesk:wght@400;500;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="css/style.css" />
+</head>
+<body>
+<div class="grain"></div>
+
+<div id="adminAuth">
+  <header class="topbar">
+    <div class="brand">
+      <span class="brand-mark" aria-hidden="true"><svg viewBox="0 0 40 40" class="steam-icon"><rect x="8" y="26" width="24" height="8" rx="2" class="cup" /></svg></span>
+      <span class="brand-name">NEXA<span class="brand-dot">.</span>ADMIN</span>
+    </div>
+  </header>
+  <main class="stage" style="grid-template-columns:1fr">
+    <section class="auth-panel" style="max-width:420px;margin:0 auto">
+      <div class="ticket">
+        <h2 style="margin-top:0">Super Admin</h2>
+        <form id="adminLoginForm" class="panel-form active">
+          <label>Email</label>
+          <input type="email" id="adminEmail" required />
+          <label>Password</label>
+          <input type="password" id="adminPassword" required />
+          <button type="submit" class="primary-btn">Sign in</button>
+        </form>
+        <p id="adminAuthError" class="form-error" hidden></p>
+        <p class="form-note">Bootstrap the first super admin via SQL — see supabase/storage_and_bootstrap.sql.</p>
+      </div>
+    </section>
+  </main>
+</div>
+
+<div id="adminShell" hidden>
+  <div class="app-frame">
+    <aside class="side-nav">
+      <div class="side-brand">
+        <span class="brand-mark small"><svg viewBox="0 0 40 40" class="steam-icon"><rect x="8" y="26" width="24" height="8" rx="2" class="cup" /></svg></span>
+        <span>Super Admin</span>
+      </div>
+      <nav>
+        <button class="nav-item active" data-view="tenants">Shops</button>
+        <button class="nav-item" data-view="requests">Renewal requests</button>
+        <button class="nav-item" data-view="pricing">Plan pricing</button>
+      </nav>
+      <button id="adminLogout" class="ghost-btn full">Sign out</button>
+    </aside>
+    <main class="app-main">
+
+      <section id="view-tenants" class="view active">
+        <div class="view-head"><h2>Registered shops</h2></div>
+        <ul id="tenantList" class="emp-list"></ul>
+      </section>
+
+      <section id="view-requests" class="view">
+        <div class="view-head"><h2>Pending renewal requests</h2></div>
+        <ul id="requestList" class="emp-list"></ul>
+      </section>
+
+      <section id="view-pricing" class="view">
+        <div class="view-head"><h2>Plan pricing</h2></div>
+        <div id="pricingCards"></div>
+      </section>
+
+    </main>
+  </div>
+</div>
+
+<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+<script src="config.js"></script>
+<script src="js/supabaseClient.js"></script>
+<script src="js/admin.js"></script>
+</body>
+</html>

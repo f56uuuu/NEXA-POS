@@ -1,0 +1,384 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl" data-theme="dark">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>NEXA POS</title>
+<link rel="icon" href="img/brand-sun.jpg" type="image/jpeg" />
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Tajawal:wght@400;500;700;900&family=Space+Grotesk:wght@400;500;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="css/style.css" />
+</head>
+<body>
+
+<div class="grain"></div>
+
+<div id="authScreen">
+  <header class="topbar">
+    <div class="brand">
+      <span class="brand-mark" aria-hidden="true">
+        <svg viewBox="0 0 40 40" class="steam-icon">
+          <path class="steam s1" d="M12 26 C 8 22, 16 18, 12 12" />
+          <path class="steam s2" d="M20 26 C 16 22, 24 18, 20 12" />
+          <path class="steam s3" d="M28 26 C 24 22, 32 18, 28 12" />
+          <rect x="8" y="26" width="24" height="8" rx="2" class="cup" />
+        </svg>
+      </span>
+      <span class="brand-name">NEXA<span class="brand-dot">.</span>POS</span>
+    </div>
+    <div class="topbar-controls">
+      <button id="langToggle" class="pill-btn" type="button">EN</button>
+      <button id="themeToggle" class="pill-btn icon-btn" type="button" aria-label="toggle theme">
+        <svg viewBox="0 0 24 24" width="18" height="18"><path d="M12 3a9 9 0 1 0 9 9c0-.46-.04-.92-.1-1.36A5.4 5.4 0 0 1 12 3z"/></svg>
+      </button>
+    </div>
+  </header>
+
+  <main class="stage">
+    <section class="pitch">
+      <p class="eyebrow" data-i18n="eyebrow">نظام نقاط بيع للمقاهي والمطاعم</p>
+      <h1 data-i18n="headline">إدارة محلك،<br/>مِن كوب القهوة الأول.</h1>
+      <p class="sub" data-i18n="sub">مبيعات، مناوبات، منتجات وتقارير — كل شيء بمكان واحد، بالدينار العراقي، بالعربي والإنجليزي.</p>
+      <ul class="pitch-list">
+        <li data-i18n="p1">فصل كامل بين بيانات كل محل</li>
+        <li data-i18n="p2">صلاحيات مالك ومدير وكاشير منفصلة</li>
+        <li data-i18n="p3">تتبّع المناوبات لحظة بلحظة</li>
+      </ul>
+      <img class="pitch-art" src="img/brand-faces.jpg" alt="" aria-hidden="true" />
+    </section>
+
+    <section class="auth-panel">
+      <div class="ticket">
+        <div class="tabs">
+          <button class="tab active" data-tab="login" data-i18n="tabLogin">تسجيل الدخول</button>
+          <button class="tab" data-tab="signup" data-i18n="tabSignup">فتح محل جديد</button>
+        </div>
+
+        <form id="loginForm" class="panel-form active" autocomplete="off">
+          <label data-i18n="labelEmail">البريد الإلكتروني</label>
+          <input type="email" id="loginEmail" required placeholder="you@business.com" />
+          <label data-i18n="labelPassword">كلمة المرور</label>
+          <input type="password" id="loginPassword" required minlength="8" placeholder="••••••••" />
+          <button type="submit" class="primary-btn" data-i18n="btnLogin">دخول</button>
+          <p class="form-note" data-i18n="loginNote">يدخل المالك والمدير والكاشير من نفس الحقل — الصلاحيات تتحدد تلقائيًا.</p>
+        </form>
+
+        <form id="signupForm" class="panel-form" autocomplete="off">
+          <label data-i18n="labelBizName">اسم المحل</label>
+          <input type="text" id="bizName" required placeholder="مقهى الصباح" />
+          <label data-i18n="labelOwnerName">اسمك</label>
+          <input type="text" id="ownerName" required placeholder="أحمد" />
+          <label data-i18n="labelEmail">البريد الإلكتروني</label>
+          <input type="email" id="ownerEmail" required placeholder="you@business.com" />
+          <label data-i18n="labelPassword">كلمة المرور</label>
+          <input type="password" id="ownerPassword" required minlength="8" placeholder="8 أحرف على الأقل" />
+          <button type="submit" class="primary-btn" data-i18n="btnSignup">إنشاء الحساب</button>
+          <p class="form-note" data-i18n="signupNote">يبدأ حسابك فعّالًا فورًا.</p>
+        </form>
+
+        <p id="formError" class="form-error" hidden></p>
+      </div>
+    </section>
+  </main>
+
+  <div class="brand-mosaic" aria-hidden="true">
+    <img src="img/brand-sun.jpg" alt="" />
+    <img src="img/brand-duo.jpg" alt="" />
+    <img src="img/brand-faces.jpg" alt="" />
+    <img src="img/brand-faceless.jpg" alt="" />
+    <img src="img/brand-feelingblue.jpg" alt="" />
+    <img src="img/brand-dev.jpg" alt="" />
+  </div>
+
+  <footer class="site-footer">
+    <span id="devGate" class="dev-gate" data-i18n="devCredit">Developed by Ahmed Ihsan Hussein</span>
+    <img id="devArt" class="dev-art" src="img/brand-dev.jpg" alt="" hidden />
+  </footer>
+</div>
+
+<div id="lockedScreen" class="locked-screen" hidden>
+  <div class="ticket" style="max-width:420px;margin:10vh auto">
+    <h2 data-i18n="lockedTitle">الاشتراك منتهي</h2>
+    <p id="lockedText" class="form-note" style="text-align:start"></p>
+    <div class="plan-row" id="lockedPlanRow"></div>
+    <button id="lockedLogoutBtn" class="ghost-btn full" data-i18n="btnLogout">تسجيل الخروج</button>
+  </div>
+</div>
+
+<div id="appShell" hidden>
+  <div class="app-frame">
+
+    <aside class="side-nav">
+      <div class="side-brand">
+        <span class="brand-mark small"><svg viewBox="0 0 40 40" class="steam-icon"><rect x="8" y="26" width="24" height="8" rx="2" class="cup" /></svg></span>
+        <img id="sideBizLogo" class="side-logo" alt="" hidden />
+        <span id="sideBizName">—</span>
+      </div>
+      <nav>
+        <button class="nav-item active" data-view="pos" data-i18n="navPos">نقطة البيع</button>
+        <button class="nav-item" data-view="products" data-i18n="navProducts">المنتجات</button>
+        <button class="nav-item" data-view="shifts" data-i18n="navShifts">المناوبة</button>
+        <button class="nav-item manager-only" data-view="reports" data-i18n="navReports">التقارير</button>
+        <button class="nav-item manager-only" data-view="inventory" data-i18n="navInventory">المخزون والمشتريات</button>
+        <button class="nav-item manager-only" data-view="expenses" data-i18n="navExpenses">المصاريف</button>
+        <button class="nav-item manager-only" data-view="debts" data-i18n="navDebts">الديون والزبائن</button>
+        <button class="nav-item owner-only" data-view="employees" data-i18n="navEmployees">الموظفون</button>
+        <button class="nav-item owner-only" data-view="settings" data-i18n="navSettings">الاشتراك والهوية</button>
+      </nav>
+      <div class="side-controls">
+        <button id="langToggle2" class="pill-btn" type="button">EN</button>
+        <button id="themeToggle2" class="pill-btn icon-btn" type="button" aria-label="toggle theme">
+          <svg viewBox="0 0 24 24" width="16" height="16"><path d="M12 3a9 9 0 1 0 9 9c0-.46-.04-.92-.1-1.36A5.4 5.4 0 0 1 12 3z"/></svg>
+        </button>
+      </div>
+      <button id="logoutBtn" class="ghost-btn full" data-i18n="btnLogout">تسجيل الخروج</button>
+    </aside>
+
+    <main class="app-main">
+
+      <div id="subBanner" class="sub-banner" hidden></div>
+
+      <section id="view-pos" class="view active">
+        <div class="pos-grid">
+          <div class="pos-products">
+            <div class="pos-toolbar">
+              <input id="posSearch" type="search" data-i18n-ph="searchProducts" placeholder="ابحث عن منتج..." />
+            </div>
+            <div id="posProductGrid" class="product-grid"></div>
+          </div>
+          <div class="pos-cart">
+            <h3 data-i18n="cart">السلة</h3>
+            <select id="tableSelect" style="margin-bottom:10px;width:100%"></select>
+            <div id="cartItems" class="cart-items"></div>
+            <div class="cart-summary">
+              <label data-i18n="discount">الخصم (د.ع)</label>
+              <div class="row" style="gap:8px">
+                <input id="discountInput" type="number" min="0" value="0" style="flex:1" />
+                <label style="display:flex;align-items:center;gap:4px;font-size:0.78rem;color:var(--ink-dim)"><input type="checkbox" id="discountIsPercent" />%</label>
+              </div>
+              <div class="cart-line"><span data-i18n="subtotal">المجموع الفرعي</span><span id="cartSubtotal">0</span></div>
+              <div class="cart-line" id="cartServiceRow" hidden><span data-i18n="serviceCharge">رسوم الخدمة</span><span>0</span></div>
+              <div class="cart-line total"><span data-i18n="total">الإجمالي</span><span id="cartTotal">0</span></div>
+            </div>
+            <label style="display:flex;align-items:center;gap:6px;font-size:0.82rem;margin:10px 0">
+              <input type="checkbox" id="debtSaleToggle" /> <span data-i18n="debtSale">بيع بالدين (تأجيل الدفع)</span>
+            </label>
+            <div id="payMethodsBlock">
+              <div class="pay-methods">
+                <label><input type="radio" name="payMethod" value="cash" checked /> <span data-i18n="cash">نقدي</span></label>
+                <label><input type="radio" name="payMethod" value="visa" /> <span data-i18n="visa">ماستر/فيزا</span></label>
+                <label><input type="radio" name="payMethod" value="zaincash" /> <span data-i18n="zaincash">زين كاش</span></label>
+              </div>
+              <input id="terminalRef" type="text" data-i18n-ph="terminalRefPh" placeholder="مرجع الجهاز (اختياري)" />
+            </div>
+            <div id="debtCustomerBlock" hidden>
+              <select id="debtCustomerSelect" style="width:100%"></select>
+            </div>
+            <button id="checkoutBtn" class="primary-btn full" data-i18n="checkout">إتمام البيع</button>
+            <button id="printLastBtn" class="ghost-btn full" data-i18n="printReceipt" hidden>طباعة آخر إيصال</button>
+            <button id="printBluetoothBtn" class="ghost-btn full" data-i18n="printBluetooth" hidden>طباعة بلوتوث</button>
+            <p id="posError" class="form-error" hidden></p>
+          </div>
+        </div>
+      </section>
+
+      <section id="view-products" class="view">
+        <div class="view-head"><h2 data-i18n="navProducts">المنتجات</h2></div>
+        <div class="card">
+          <h3 data-i18n="addCategory">إضافة قسم</h3>
+          <form id="categoryForm" class="inline-form row">
+            <input id="catNameAr" placeholder="اسم القسم بالعربي" required />
+            <button class="primary-btn small" type="submit" data-i18n="btnAdd">إضافة</button>
+          </form>
+          <div id="categoryChips" class="chip-row"></div>
+        </div>
+        <div class="card">
+          <h3 data-i18n="addProduct">إضافة منتج</h3>
+          <form id="productForm" class="inline-form">
+            <div class="row">
+              <input id="prodNameAr" placeholder="اسم المنتج بالعربي" required />
+              <input id="prodNameEn" placeholder="English name (اختياري — يترجم تلقائيًا)" />
+            </div>
+            <div class="row">
+              <input id="prodPrice" type="number" min="0" placeholder="السعر (د.ع)" required />
+              <select id="prodCategory"><option value="" data-i18n="noCategory">بدون قسم</option></select>
+            </div>
+            <div class="row">
+              <input id="prodImage" type="file" accept="image/png,image/jpeg,image/webp" />
+              <img id="prodImagePreview" class="img-preview" hidden />
+            </div>
+            <input type="hidden" id="prodEditId" />
+            <button class="primary-btn small" type="submit" data-i18n="btnAdd">إضافة</button>
+          </form>
+        </div>
+        <div id="productManageGrid" class="product-grid manage"></div>
+        <div class="card manager-only">
+          <h3 data-i18n="tables">الطاولات ومناطق البيع</h3>
+          <form id="tableForm" class="inline-form row">
+            <input id="tableLabel" placeholder="مثال: طاولة 1، تيك أواي" required />
+            <select id="tableKind">
+              <option value="dine_in" data-i18n="dineIn">داخل المحل</option>
+              <option value="takeaway" data-i18n="takeaway">تيك أواي</option>
+              <option value="delivery" data-i18n="delivery">توصيل</option>
+            </select>
+            <button class="primary-btn small" type="submit" data-i18n="btnAdd">إضافة</button>
+          </form>
+          <ul id="tableManageList" class="emp-list" style="margin-top:14px"></ul>
+        </div>
+      </section>
+
+      <section id="view-shifts" class="view">
+        <div class="view-head"><h2 data-i18n="navShifts">المناوبة</h2></div>
+        <div id="shiftCard" class="card"></div>
+      </section>
+
+      <section id="view-reports" class="view">
+        <div class="view-head"><h2 data-i18n="navReports">التقارير</h2><button id="exportCsvBtn" class="ghost-btn" data-i18n="exportCsv">تصدير CSV</button></div>
+        <div class="report-grid">
+          <div class="card stat"><p class="eyebrow" data-i18n="todaySales">مبيعات اليوم</p><h2 id="statSales">0</h2></div>
+          <div class="card stat"><p class="eyebrow" data-i18n="monthSales">مبيعات الشهر</p><h2 id="statMonthSales">0</h2></div>
+          <div class="card stat"><p class="eyebrow" data-i18n="allTimeSales">إجمالي المبيعات الكلي</p><h2 id="statAllTime">0</h2></div>
+          <div class="card stat"><p class="eyebrow" data-i18n="netProfit">صافي الربح (بعد المصاريف)</p><h2 id="statNetProfit" style="font-size:1.1rem">0</h2></div>
+        </div>
+        <div class="card">
+          <h3 data-i18n="topProducts">الأكثر مبيعًا</h3>
+          <div id="topProductBars" class="bars"></div>
+        </div>
+        <div class="card">
+          <h3 data-i18n="paymentBreakdown">توزيع طرق الدفع اليوم</h3>
+          <div id="paymentBars" class="bars"></div>
+        </div>
+        <div class="card">
+          <div class="view-head"><h3 data-i18n="yearlyReport">التقرير السنوي</h3>
+            <input id="yearInput" type="number" style="width:100px" />
+          </div>
+          <div id="yearBars" class="bars tall"></div>
+        </div>
+        <div class="card manager-only">
+          <h3 data-i18n="recentOrders">آخر الطلبات</h3>
+          <p class="form-note" style="text-align:start" data-i18n="voidNote">للمدير والمالك فقط: يمكن إلغاء طلب مسجّل بالخطأ.</p>
+          <ul id="recentOrdersList" class="emp-list"></ul>
+        </div>
+      </section>
+
+      <section id="view-inventory" class="view">
+        <div class="view-head"><h2 data-i18n="navInventory">المخزون والمشتريات</h2></div>
+        <div id="lowStockBanner" class="sub-banner" hidden></div>
+        <div class="card">
+          <h3 data-i18n="addItem">إضافة مادة</h3>
+          <form id="itemForm" class="inline-form row">
+            <input id="itemNameAr" placeholder="اسم المادة" required />
+            <input id="itemUnit" placeholder="الوحدة (كغم، لتر...)" value="unit" />
+            <input id="itemThreshold" type="number" min="0" placeholder="حد التنبيه" value="0" />
+            <button class="primary-btn small" type="submit" data-i18n="btnAdd">إضافة</button>
+          </form>
+        </div>
+        <div class="card">
+          <h3 data-i18n="recordPurchase">تسجيل مشترى</h3>
+          <form id="purchaseForm" class="inline-form row">
+            <select id="purchaseItem"></select>
+            <input id="purchaseQty" type="number" step="any" placeholder="الكمية" required />
+            <input id="purchaseCost" type="number" min="0" placeholder="التكلفة الإجمالية (د.ع)" value="0" />
+            <button class="primary-btn small" type="submit" data-i18n="btnAdd">تسجيل</button>
+          </form>
+        </div>
+        <div class="card">
+          <h3 data-i18n="stockLevels">المخزون الحالي</h3>
+          <ul id="inventoryList" class="emp-list"></ul>
+        </div>
+      </section>
+
+      <section id="view-expenses" class="view">
+        <div class="view-head"><h2 data-i18n="navExpenses">المصاريف</h2></div>
+        <div class="card">
+          <h3 data-i18n="addExpense">تسجيل مصروف</h3>
+          <form id="expenseForm" class="inline-form row">
+            <input id="expenseCategory" placeholder="الفئة (إيجار، صيانة...)" required />
+            <input id="expenseAmount" type="number" min="0" placeholder="المبلغ (د.ع)" required />
+            <input id="expenseNote" placeholder="ملاحظة (اختياري)" />
+            <button class="primary-btn small" type="submit" data-i18n="btnAdd">تسجيل</button>
+          </form>
+        </div>
+        <div class="card">
+          <h3 data-i18n="recentExpenses">آخر المصاريف</h3>
+          <ul id="expenseList" class="emp-list"></ul>
+        </div>
+      </section>
+
+      <section id="view-debts" class="view">
+        <div class="view-head"><h2 data-i18n="navDebts">الديون والزبائن</h2></div>
+        <div class="card">
+          <h3 data-i18n="addCustomer">إضافة زبون</h3>
+          <form id="customerForm" class="inline-form row">
+            <input id="customerName" placeholder="اسم الزبون" required />
+            <input id="customerPhone" placeholder="رقم الهاتف (اختياري)" />
+            <button class="primary-btn small" type="submit" data-i18n="btnAdd">إضافة</button>
+          </form>
+          <ul id="customerList" class="emp-list" style="margin-top:14px"></ul>
+        </div>
+        <div class="card">
+          <h3 data-i18n="outstandingDebts">الديون المستحقة</h3>
+          <ul id="debtList" class="emp-list"></ul>
+        </div>
+      </section>
+
+      <section id="view-employees" class="view">
+        <div class="view-head"><h2 data-i18n="navEmployees">الموظفون</h2></div>
+        <div class="card">
+          <h3 data-i18n="addEmployee">إضافة موظف</h3>
+          <form id="employeeForm" class="inline-form row">
+            <input id="empName" placeholder="الاسم" required />
+            <input id="empEmail" type="email" placeholder="البريد الإلكتروني" required />
+            <input id="empPassword" type="password" placeholder="كلمة المرور" required minlength="8" />
+            <select id="empRole">
+              <option value="cashier" data-i18n="roleCashier">كاشير</option>
+              <option value="manager" data-i18n="roleManager">مدير</option>
+            </select>
+            <button class="primary-btn small" type="submit" data-i18n="btnAdd">إضافة</button>
+          </form>
+          <p id="empError" class="form-error" hidden></p>
+        </div>
+        <div class="card">
+          <h3 data-i18n="employees">الموظفون</h3>
+          <ul id="employeeList" class="emp-list"></ul>
+        </div>
+      </section>
+
+      <section id="view-settings" class="view">
+        <div class="view-head"><h2 data-i18n="navSettings">الاشتراك والهوية</h2></div>
+        <div class="card">
+          <p id="subStatusText"></p>
+          <div class="plan-row" id="planRow"></div>
+          <p id="pendingReqText" class="form-note" style="text-align:start" hidden></p>
+        </div>
+        <div class="card">
+          <h3 data-i18n="brandingCard">شعار المحل والهوية</h3>
+          <label style="font-size:0.85rem;color:var(--ink-dim)" data-i18n="uploadLogo">رفع شعار مخصص</label>
+          <input id="logoUpload" type="file" accept="image/png,image/jpeg,image/webp" style="margin:8px 0 16px" />
+          <label style="display:flex;align-items:center;gap:8px;font-size:0.88rem">
+            <input type="checkbox" id="artisticToggle" checked />
+            <span data-i18n="useArtistic">استخدام الصور الفنية الخاصة بالتطبيق بدل الشعار</span>
+          </label>
+        </div>
+        <div class="card">
+          <h3 data-i18n="serviceChargeCard">رسوم الخدمة</h3>
+          <label style="font-size:0.85rem;color:var(--ink-dim)" data-i18n="serviceChargePct">نسبة رسوم الخدمة (%)</label>
+          <input id="serviceChargeInput" type="number" min="0" max="100" step="0.5" style="max-width:160px" />
+        </div>
+      </section>
+
+    </main>
+  </div>
+</div>
+
+<div id="receiptPrint" class="receipt-print"></div>
+
+<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+<script src="config.js"></script>
+<script src="js/supabaseClient.js"></script>
+<script src="js/offlineQueue.js"></script>
+<script src="js/btPrint.js"></script>
+<script src="js/app.js"></script>
+</body>
+</html>
