@@ -1,8 +1,8 @@
 [build]
-  base = "frontend"
+  base = "."
   publish = "frontend"
-  command = "node ../scripts/gen-config.js"
-  functions = "../netlify/functions"
+  command = "node scripts/gen-config.js"
+  functions = "netlify/functions"
 
 [functions]
   node_bundler = "esbuild"
