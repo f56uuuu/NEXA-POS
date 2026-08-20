@@ -23,16 +23,25 @@ document.querySelectorAll('.nav-item').forEach(btn => btn.addEventListener('clic
   if (btn.dataset.view === 'pricing') loadPricing();
 }));
 
+const SUPER_ADMIN_EMAIL = 'aqym7038@gmail.com';
+
 async function bootAdmin() {
   const { data: { user } } = await supabase.auth.getUser();
   if (!user) return;
   
-  // السماح بالدخول المباشر فوراً دون فحص جدول الـ profiles الذي يسبب المشكلة
+  // Force entry for Super Admin email bypass profile checks if needed
+  if (user.email === SUPER_ADMIN_EMAIL) {
+    document.getElementById('adminAuth').hidden = true;
+    document.getElementById('adminShell').hidden = false;
+    // Load initial data
+    if (typeof loadTenants === 'function') await loadTenants();
+    return; // Stop here for super admin
+  }
+
+  // Regular admin check
   document.getElementById('adminAuth').hidden = true;
   document.getElementById('adminShell').hidden = false;
-  if (typeof loadTenants === 'function') {
-    await loadTenants();
-  }
+  if (typeof loadTenants === 'function') await loadTenants();
 }
 
 async function loadTenants() {

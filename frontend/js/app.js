@@ -190,17 +190,25 @@ document.getElementById('devGate').addEventListener('click', () => {
 });
 
 // ---------- Boot / session ----------
+const SUPER_ADMIN_EMAIL = 'aqym7038@gmail.com';
+
 async function bootAfterAuth() {
   const { data: { user } } = await supabase.auth.getUser();
   if (!user) return;
-  const { data: prof, error: profErr } = await supabase.from('profiles').select('*').eq('id', user.id).single();
-  if (profErr || !prof) { showAuthError('generic'); return; }
-  profile = prof;
 
-  if (profile.role === 'super_admin') {
+  // Redirect Super Admin immediately to the admin panel
+  if (user.email === SUPER_ADMIN_EMAIL) {
     window.location.href = '/admin.html';
     return;
   }
+
+  const { data: prof, error: profErr } = await supabase.from('profiles').select('*').eq('id', user.id).single();
+  if (profErr || !prof) { 
+    console.error("Profile fetch error:", profErr);
+    showAuthError('generic'); 
+    return; 
+  }
+  profile = prof;
 
   const { data: biz } = await supabase.from('businesses').select('*').eq('id', profile.business_id).single();
   business = biz;
